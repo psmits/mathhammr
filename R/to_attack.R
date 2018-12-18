@@ -15,7 +15,7 @@
 #'
 #' # a single SM tactical attacks while within 6" of a Captain.
 #' to_attack(n = 1, skill = 3+, reroll = 1)
-#' 
+#'
 #' # a CSM attacks with Death to the False Emperor.
 #' to_attack(n = 1, skill = 3+, explode = 6)
 #'
@@ -44,9 +44,10 @@ to_attack <- function(n, skill, reroll = NULL, explode = NULL, expand = NULL) {
 
   # given all those rolls, how many successes?
   success <- sum(rr >= skill)
- 
+
   # expanding results
   if(!is.null(expand)) {
+    expand$x <- rr
     more_success <- do.call(expand_dice, expand)
     success <- success + more_success
   }

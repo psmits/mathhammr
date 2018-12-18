@@ -42,9 +42,10 @@ to_wound <- function(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL) 
   } else if(str <= (2 * tgh)) {        # str half or less of toughness
     success <- sum(rr >= 6)
   }
-  
+
   # expanding results
   if(!is.null(expand)) {
+    expand$x <- rr
     more_success <- do.call(expand_dice, expand)
     success <- success + more_success
   }
