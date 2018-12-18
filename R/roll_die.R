@@ -6,7 +6,7 @@
 #' @return numeric vector of length >= 1.
 #' @examples
 #' roll_die(1)
-roll_die <- function(n) {
+roll_dice <- function(n) {
   sample(x = 1:6,
          size = n,
          replace = TRUE)
@@ -23,15 +23,15 @@ roll_die <- function(n) {
 #' @param lvl numeric scalar what MINIMUM result explodes; default 6+
 #' @return numeric vector of length >= x.
 #' @examples
-#' x <- roll_die(6)
+#' x <- roll_dice(6)
 #' # death to the false emperor
 #' explode_die(x = x, lvl = 6)
-explode_die <- function(x, lvl = 6) {
+explode_dice <- function(x, lvl = 6) {
   # how many exploded
   ex <- sum(x >= lvl)
 
   # add the new rolls on the end
-  out <- c(x, roll_die(ex))
+  out <- c(x, roll_dice(ex))
 
   out
 }
@@ -46,15 +46,15 @@ explode_die <- function(x, lvl = 6) {
 #' @param lvl numeric scalar what MAXIMUM result rerolls; default re-roll 1s.
 #' @return numeric vector of length == x.
 #' @examples
-#' x <- roll_die(6)
+#' x <- roll_dice(6)
 #' # captain aura on to-hit
-#' reroll_die(x = x, lvl = 1)
-reroll_die <- function(x, lvl = 1) {
+#' reroll_dice(x = x, lvl = 1)
+reroll_dice <- function(x, lvl = 1) {
   # which get re-rolled
   rr <- which(x <= lvl)
 
   # replace those values with new rolls
-  x[rr] <- roll_die(rr)
+  x[rr] <- roll_dice(rr)
 
   x
 }
