@@ -67,10 +67,13 @@ reroll_dice <- function(x, lvl = 1) {
 #' I call this "expands" because it increases the number of successes without generating new rolls (explodes).
 #' Expanding attacks have a rate of expansion -- how many new successes proc-d on flagged roll?
 #'
+#' This function specifically returns the number of additionall successes, not including the initial success.
+#' For example, if an attack grants 3 successes on a 6+, this function would return 2 -- the ADDITIONAL successes.
+#'
 #' @param x numeric vector length >= 1.
 #' @param lvl numeric scalar what MINIMUM result expands; default 6+.
 #' @param rate numeric scalar number of actual successes on proc (default 1)?
-#' @return integer scalar number additional successes
+#' @return integer scalar number additional successes (not including initial)
 #' @examples
 #' x <- roll_dice(6)
 #' expand_dice(x = x, lvl = 6, rate = 3)
@@ -79,8 +82,8 @@ expand_dice <- function(x, lvl = 6, rate = 1) {
   n <- sum(x >= lvl)
 
   # expansion of those...
-  out <- n * rate - 1                      # ADDITIONAL successes
-  out <- max(0, out)
+  out <- n * (rate - 1)                # ADDITIONAL successes (if rate is 3, then additional successes are 2)
+  out <- max(0, out)                   # no negative successes!
   # this is what rate 1 produces no ADDITIONAL successes -- no expansion
 
   out
