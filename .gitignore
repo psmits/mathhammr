@@ -1,5 +1,7 @@
-# https://github.com/github/gitignore/blob/master/R.gitignore
+# Created by https://www.gitignore.io/api/r
+# Edit at https://www.gitignore.io/?templates=r
 
+### R ###
 # History files
 .Rhistory
 .Rapp.history
@@ -33,3 +35,12 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+# Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
+rsconnect/
+
+### R.Bookdown Stack ###
+# R package: bookdown caching files
+/*_files/
+
+# End of https://www.gitignore.io/api/r
