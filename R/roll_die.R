@@ -20,8 +20,8 @@ roll_dice <- function(n) {
 #' This adds a new roll to the results for each explosion.
 #'
 #' @param x numeric vector length >= 1.
-#' @param lvl numeric scalar what MINIMUM result explodes; default 6+
-#' @return numeric vector of length >= x.
+#' @param lvl numeric scalar what MINIMUM result explodes; default 6+.
+#' @return numeric vector of new rolls.
 #' @examples
 #' x <- roll_dice(6)
 #' # death to the false emperor
@@ -31,7 +31,7 @@ explode_dice <- function(x, lvl = 6) {
   ex <- sum(x >= lvl)
 
   # add the new rolls on the end
-  out <- c(x, roll_dice(ex))
+  out <- roll_dice(ex)
 
   out
 }
@@ -57,4 +57,30 @@ reroll_dice <- function(x, lvl = 1) {
   x[rr] <- roll_dice(rr)
 
   x
+}
+
+
+#' Expands effects
+#'
+#' Some effects spawn additional successes on certain rolls. 
+#' For example, on an attack roll of 6+, this attack scores 3 hits instead of 1.
+#' I call this "expands" because it increases the number of successes without generating new rolls (explodes).
+#' Expanding attacks have a rate of expansion -- how many new successes proc-d on flagged roll?
+#' 
+#' @param x numeric vector length >= 1.
+#' @param lvl numeric scalar what MINIMUM result expands; default 6+.
+#' @param rate numeric scalar number of actual successes on proc (default 1)?
+#' @return integer scalar number additional successes
+#' @examples
+#' x <- roll_dice(6)
+#' expand_dice(x = x, lvl = 6, rate = 3)
+expand_dice <- function(x, lvl = 6, rate = 1) {
+  # how many proc?
+  n <- sum(x >= lvl)
+
+  # expansion of those...
+  out <- n * rate - 1                  # ADDITIONAL successes
+  # this is what rate 1 produces no ADDITIONAL successes -- no expansion
+
+  out
 }
