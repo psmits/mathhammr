@@ -61,12 +61,13 @@ to_wound <- function(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL) 
     }
     if(explode < 1) {
       stop('Error: explode below 1 are invalid.
-           just leave NULL.')
+           * If no exploding dice, leave NULL.
+           * If all dice explode, use 6.')
     }
     if(explode > 6) {
       stop('Error: explode above 6 are invalid.
-           * If exploding everything, use 6.
-           * If exploding nothing, leave NULL.')
+           * If all dice explode, use 6.
+           * If no exploding dice, leave NULL.')
     }
   }
 
@@ -77,9 +78,11 @@ to_wound <- function(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL) 
     if(is.null(expand)) {
       stop('Error: expand expects a named list.')
     }
-
-    if(names(expand) %in% c('lvl', 'rate')) {
+    if(!all(names(expand) %in% c('lvl', 'rate'))) {
       stop('Error: expand expects two named elements: lvl and rate.')
+    }
+    if(length(expand) != 2) {
+      stop('Error: expand expects list of length 2.')
     }
 
     if(!is.numeric(expand$lvl)) {
