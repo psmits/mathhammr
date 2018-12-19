@@ -25,78 +25,78 @@
 to_attack <- function(n, skill, reroll = NULL, explode = NULL, expand = NULL) {
   # defense
   if(!is.numeric(n)) {
-    stop('n must be numeric.')
+    stop('Error: n must be numeric.')
   }
   if(n < 1) {
-    stop('must roll at least 1 die. n < 1.')
+    stop('Error: must roll at least 1 die. n < 1.')
   }
 
   if(!is.numeric(skill)) {
-    stop('skill must be numeric.')
+    stop('Error: skill must be numeric.')
   }
   if(skill < 1) {
-    stop('must have min skill 1. skill < 1.')
+    stop('Error: must have min skill 1. skill < 1.')
   }
   if(skill > 6) {
-    stop('must have max skill 6. skill > 6.')
+    stop('Error: must have max skill 6. skill > 6.')
   }
 
   if(!is.null(reroll)) {
     if(!is.numeric(reroll)) {
-      stop('reroll must be numeric.')
+      stop('Error: reroll must be numeric.')
     }
     if(reroll < 1) {
-      stop('reroll below 1 are invalid. just leave NULL.')
+      stop('Error: reroll below 1 are invalid. just leave NULL.')
     }
     if(reroll > 6) {
-      stop('reroll above 6 are invalid.
-           if rerolling everything, use 6.
-           if rerolling nothing, leave NULL.')
+      stop('Error: reroll above 6 are invalid.
+           * If rerolling everything, use 6.
+           * If rerolling nothing, leave NULL.')
     }
   }
 
   if(!is.null(explode)) {
     if(!is.numeric(explode)) {
-      stop('explode must be numeric.')
+      stop('Error: explode must be numeric.')
     }
     if(explode < 1) {
-      stop('explode below 1 are invalid.
+      stop('Error: explode below 1 are invalid.
            just leave NULL.')
     }
     if(explode > 6) {
-      stop('explode above 6 are invalid.
-           if exploding everything, use 6.
-           if exploding nothing, leave NULL.')
+      stop('Error: explode above 6 are invalid.
+           * If exploding everything, use 6.
+           * If exploding nothing, leave NULL.')
     }
   }
 
   if(!is.null(expand)) {
     if(!is.list(expand)) {
-      stop('expand expects a list.')
+      stop('Error: expand expects a list.')
     }
     if(is.null(expand)) {
-      stop('expand expects a named list.')
+      stop('Error: expand expects a named list.')
     }
 
     if(names(expand) %in% c('lvl', 'rate')) {
-      stop('expand expects two named elements: lvl and rate.')
+      stop('Error: expand expects two named elements: lvl and rate.')
     }
 
     if(!is.numeric(expand$lvl)) {
-      stop('expand lvl must be numeric.')
+      stop('Error: expand lvl must be numeric.')
     }
     if(expand$lvl > 6) {
-      stop('expand lvl must be equal to or less than 6.')
+      stop('Error: expand lvl must be equal to or less than 6.')
     }
     if(expand$lvl < 1) {
-      stop('expand lvl must be greater than or equal to 1.')
+      stop('Error: expand lvl must be greater than or equal to 1.')
     }
 
     if(!is.numeric(expand$rate)) {
-      stop('rate must be greater than or equal to 1.')
+      stop('Error: rate must be greater than or equal to 1.')
     }
     if(expand$rate < 1) {
-      stop('rate must be greater than or equal to 1.')
+      stop('Error: rate must be greater than or equal to 1.')
     }
   }
 

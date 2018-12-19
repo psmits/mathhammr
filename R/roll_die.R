@@ -10,10 +10,10 @@
 roll_dice <- function(n) {
   # defense
   if(!is.numeric(n)) {
-    stop('n must be numeric')
+    stop('Error: n must be numeric')
   }
   if(n < 1) {
-    stop('must roll at least one die. n must be >= 1.')
+    stop('Error: must roll at least one die. n must be >= 1.')
   }
 
   sample(x = 1:6,
@@ -39,20 +39,20 @@ roll_dice <- function(n) {
 explode_dice <- function(x, lvl = 6) {
   # defense
   if(!is.numeric(x)) {
-    stop('n must be numeric')
+    stop('Error: n must be numeric')
   }
   if(any(x < 1)) {
-    stop('must have at least one die roll (x has value below 1)')
+    stop('Error: must have at least one die roll (x has value below 1)')
   }
 
   if(!is.numeric(lvl)) {
-    stop('lvl must be numeric')
+    stop('Error: lvl must be numeric')
   }
   if(lvl > 6) {
-    stop('lvl must be equal to or less than 6')
+    stop('Error: lvl must be equal to or less than 6')
   }
   if(lvl < 1) {
-    stop('lvl must be greater than or equal to 1')
+    stop('Error: lvl must be greater than or equal to 1')
   }
 
   # how many exploded
@@ -81,20 +81,20 @@ explode_dice <- function(x, lvl = 6) {
 reroll_dice <- function(x, lvl = 1) {
   # defense
   if(!is.numeric(x)) {
-    stop('n must be numeric')
+    stop('Error: n must be numeric')
   }
   if(any(x < 1)) {
-    stop('must have at least one die roll (x has value below 1)')
+    stop('Error: must have at least one die roll (x has value below 1)')
   }
 
   if(!is.numeric(lvl)) {
-    stop('lvl must be numeric')
+    stop('Error: lvl must be numeric')
   }
   if(lvl > 6) {
-    stop('lvl must be equal to or less than 6')
+    stop('Error: lvl must be equal to or less than 6')
   }
   if(lvl < 1) {
-    stop('lvl must be greater than or equal to 1')
+    stop('Error: lvl must be greater than or equal to 1')
   }
 
   # which get re-rolled
@@ -127,27 +127,27 @@ reroll_dice <- function(x, lvl = 1) {
 expand_dice <- function(x, lvl = 6, rate = 1) {
   # defense
   if(!is.numeric(x)) {
-    stop('n must be numeric')
+    stop('Error: n must be numeric')
   }
   if(any(x < 1)) {
-    stop('must have at least one die roll (x has value below 1)')
+    stop('Error: must have at least one die roll (x has value below 1)')
   }
 
   if(!is.numeric(lvl)) {
-    stop('lvl must be numeric')
+    stop('Error: lvl must be numeric')
   }
   if(lvl > 6) {
-    stop('lvl must be equal to or less than 6')
+    stop('Error: lvl must be equal to or less than 6')
   }
   if(lvl < 1) {
-    stop('lvl must be greater than or equal to 1')
+    stop('Error: lvl must be greater than or equal to 1')
   }
 
   if(!is.numeric(rate)) {
-    stop('rate must be greater than or equal to 1')
+    stop('Error: rate must be greater than or equal to 1')
   }
   if(rate < 1) {
-    stop('rate must be greater than or equal to 1')
+    stop('Error: rate must be greater than or equal to 1')
   }
 
   # how many proc?

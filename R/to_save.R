@@ -10,35 +10,35 @@
 to_save <- function(n, sv, ap = 0, invul = FALSE) {
   # defense
   if(!is.numeric(n)) {
-    stop('n must be numeric')
+    stop('Error: n must be numeric.')
   }
   if(n < 1) {
-    stop('must roll at least one die. n must be >= 1.')
+    stop('Error: must roll at least one die. n must be >= 1.')
   }
 
   if(!is.numeric(sv)) {
-    stop('save must be a number.')
+    stop('Error: save must be a number.')
   }
   if(sv < 2) {
-    stop('cannot have a save greater than 2+. sv < 2')
+    stop('Error: Cannot have a save greater than 2+. sv < 2.')
   }
   if(sv > 6) {
-    warning('save value > 6 gives valid results, but will not prevent wounds')
+    warning('save value > 6 gives valid results, but will not prevent wounds.')
   }
 
   if(!is.numeric(ap)) {
-    stop('ap must be numeric')
+    stop('Error: ap must be numeric.')
   }
 
   if(!is.null(invul)) {
     if(!is.numeric(sv)) {
-      stop('invul must be a number.')
+      stop('Error: invul must be a number.')
     }
     if(sv < 2) {
-      stop('cannot have a invul greater than 2+. sv < 2')
+      stop('Error: Cannot have a invul greater than 2+. sv < 2.')
     }
     if(sv > 6) {
-      warning('invul value > 6 gives valid results, but will not prevent wounds')
+      warning('Error: invul value > 6 gives valid results, but will not prevent wounds.')
     }
   }
 
@@ -71,20 +71,20 @@ to_save <- function(n, sv, ap = 0, invul = FALSE) {
 to_fnp <- function(n, fnp) {
   # defense
   if(!is.numeric(n)) {
-    stop('n must be numeric')
+    stop('Error: n must be numeric.')
   }
   if(n < 1) {
-    stop('must roll at least one die. n must be >= 1.')
+    stop('Error: Must roll at least one die. n must be >= 1.')
   }
 
   if(!is.numeric(fnp)) {
-    stop('fnp must be a number.')
+    stop('Error: fnp must be a number.')
   }
   if(fnp < 2) {
-    stop('cannot have a fnp greater than 2+. sv < 2')
+    stop('Error: Cannot have a fnp greater than 2+. sv < 2.')
   }
   if(fnp > 6) {
-    warning('fnp value > 6 gives valid results, but will not prevent wounds')
+    warning('Error: fnp value > 6 gives valid results, but will not prevent wounds.')
   }
 
   # this is easy
