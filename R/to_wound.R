@@ -8,6 +8,7 @@
 #' @param reroll integer scalar what MAXIMUM result rerolls (default NULL).
 #' @param explode integer scalar what MINIMUM result explodes (default NULL).
 #' @param expand named list of arguments for \code{\link{expand_dice}} (default NULL).
+#' @param trigger integer vector length >= 1 which values trigger special effects (default NULL).
 #'
 #' @return integer scalar number of wounding hits.
 #' @export
@@ -18,7 +19,13 @@
 #'
 #' # hit a SM tactical with a boltgun within 6" of a SM Lt -- how many wounds?
 #' to_wound(n = 1, str = 4, tgh = 4, reroll = 1)
-to_wound <- function(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL) {
+to_wound <- function(n,
+                     str,
+                     tgh,
+                     reroll = NULL,
+                     explode = NULL,
+                     expand = NULL,
+                     trigger = NULL) {
   # defense
   if(!is.numeric(n)) {
     stop('Error: n must be numeric.')
@@ -103,6 +110,18 @@ to_wound <- function(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL) 
     }
   }
 
+  if(!is.null(trigger)) {
+    if(!is.numeric(trigger)) {
+      stop('Error: trigger must be numeric.')
+    }
+    if(any(trigger < 1)) {
+      stop('Error: trigger must be >= 1.')
+    }
+    if(any(trigger > 6)) {
+      stop('Error: trigger must be <= 6.')
+    }
+  }
+
   # everything starts with a dice roll
   rr <- roll_dice(n)
 
@@ -121,6 +140,12 @@ to_wound <- function(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL) 
 
     # include the new dice
     rr <- c(rr, nr)
+  }
+
+  # given all those results, how many triggers?
+  if(!is.null(trigger)) {
+    nt <- trigger_dice(x = rr, trigger = trigger)
+    message('There were ', nt, ' wound triggers.')
   }
 
   # 8th uses a simple formula to determine successful wounds

@@ -4,7 +4,8 @@
 \alias{to_attack}
 \title{How many successful hits from an attack?}
 \usage{
-to_attack(n, skill, reroll = NULL, explode = NULL, expand = NULL)
+to_attack(n, skill, reroll = NULL, explode = NULL, expand = NULL,
+  trigger = NULL)
 }
 \arguments{
 \item{n}{integer scalar number of attacks}
@@ -16,6 +17,8 @@ to_attack(n, skill, reroll = NULL, explode = NULL, expand = NULL)
 \item{explode}{integer scalar what MINIMUM result explodes (default NULL).}
 
 \item{expand}{named list of arguments for \code{\link{expand_dice}} (default NULL).}
+
+\item{trigger}{integer vector length >= 1 which values trigger special effects (default NULL).}
 }
 \value{
 integer scalar number of successful hits.
@@ -36,4 +39,7 @@ to_attack(n = 1, skill = 3, explode = 6)
 
 # with expanding attacks
 to_attack(n = 1, skill = 3, expand = list(lvl = 6, rate = 3))
+
+# a single SM tactical attacks with an overcharged plasma
+to_attack(n = 1, skill = 3, trigger = 1)
 }

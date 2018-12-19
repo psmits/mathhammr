@@ -167,3 +167,45 @@ expand_dice <- function(x, lvl = 6, rate = 1) {
 
   out
 }
+
+#' Trigger dice
+#'
+#' This function identifies how many triggers are proc-d by a roll.
+#' A trigger is a specific value (or values) which are associated with special events.
+#' For example, an overcharged plasma has a trigger on an attack roll of 1.
+#' An overcharged plasma with a -1 to hit would trigger on attack rolls of 1 AND 2.
+#'
+#' @param x numeric vector length >= 1 of dice rolls.
+#' @param trigger numeric vector of length >= 1. What EXACT values are special?
+#'
+#' @return numeric scalar number of triggers proc-d.
+#' @export
+#'
+#' @examples
+#' # trigger on a 1 (e.g. overcharged plasma)
+#' rr <- roll_dice(1)
+#' trigger_dice(x = rr, trigger = 1)
+trigger_dice <- function(x, trigger) {
+  # defense
+  if(!is.numeric(x)) {
+    stop('Error: n must be numeric')
+  }
+  if(any(x < 1)) {
+    stop('Error: Must have at least one die roll (x has value below 1)')
+  }
+
+  if(!is.numeric(trigger)) {
+    stop('Error: trigger much be numeric.')
+  }
+  if(any(trigger < 1)) {
+    stop('Error: Triggers must be >= 1.')
+  }
+  if(any(trigger > 6)) {
+    stop('Error: Triggers must be <= 6.')
+  }
+
+  # sum triggers
+  out <- sum(x %in% trigger)
+
+  out
+}
