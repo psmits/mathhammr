@@ -8,19 +8,20 @@
 #' @param reroll integer scalar what MAXIMUM result rerolls (default NULL).
 #' @param explode integer scalar what MINIMUM result explodes (default NULL).
 #' @param expand named list of arguments for \code{\link{expand_dice}} (default NULL).
+#' @export
 #' @return integer scalar number of successful hits.
 #' @examples
 #' # a single SM tactical attacks.
 #' to_attack(n = 1, skill = 3+)
 #'
 #' # a single SM tactical attacks while within 6" of a Captain.
-#' to_attack(n = 1, skill = 3+, reroll = 1)
+#' to_attack(n = 1, skill = 3, reroll = 1)
 #'
-#' # a CSM attacks with Death to the False Emperor.
-#' to_attack(n = 1, skill = 3+, explode = 6)
+#' # a single CSM attacks with Death to the False Emperor.
+#' to_attack(n = 1, skill = 3, explode = 6)
 #'
 #' # with expanding attacks
-#' to_attack(n = 1, skill = 3+, expand = list(lvl = 6, rate = 3)
+#' to_attack(n = 1, skill = 3, expand = list(lvl = 6, rate = 3)
 to_attack <- function(n, skill, reroll = NULL, explode = NULL, expand = NULL) {
   # everything starts with a dice roll
   rr <- roll_dice(n)
@@ -36,6 +37,7 @@ to_attack <- function(n, skill, reroll = NULL, explode = NULL, expand = NULL) {
 
     if(!is.null(reroll)) {
       nr <- reroll_dice(x = nr, lvl = reroll)
+      # new attacks don't proc more attacks -- cannot explode again
     }
 
     # include the new dice

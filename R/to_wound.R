@@ -8,7 +8,14 @@
 #' @param reroll integer scalar what MAXIMUM result rerolls (default NULL).
 #' @param explode integer scalar what MINIMUM result explodes (default NULL).
 #' @param expand named list of arguments for \code{\link{expand_dice}} (default NULL).
+#' @export
 #' @return integer scalar number of wounding hits.
+#' @examples
+#' # hit a SM tactical with a boltgun -- how many wounds?
+#' to_wound(n = 1, str = 4, tgh = 4)
+#'
+#' # hit a SM tactical with a boltgun within 6" of a SM Lt -- how many wounds?
+#' to_wound(n = 1, str = 4, tgh = 4, reroll = 1)
 to_wound <- function(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL) {
   # everything starts with a dice roll
   rr <- roll_dice(n)
