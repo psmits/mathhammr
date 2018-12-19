@@ -16,11 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r cache = TRUE}
-#if (!require(devtools)) {
-#    install.packages('devtools')
-#}
-#devtools::install_github('psmits/mathhammr')
+```{r message = FALSE}
+if (!require(devtools)) {
+    install.packages('devtools')
+}
+devtools::install_github('psmits/mathhammr')
 ```
 
 ```{r message = FALSE}
@@ -29,7 +29,7 @@ library(magrittr)
 library(purrr)
 library(tidyr)
 library(ggplot2)
-library(mathammr)
+library(mathhammr)
 ```
 
 ```{r}
