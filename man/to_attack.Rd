@@ -26,7 +26,7 @@ Successful attacks have the opportunity to wound the defender.
 }
 \examples{
 # a single SM tactical attacks.
-to_attack(n = 1, skill = 3+)
+to_attack(n = 1, skill = 3)
 
 # a single SM tactical attacks while within 6" of a Captain.
 to_attack(n = 1, skill = 3, reroll = 1)
@@ -35,5 +35,5 @@ to_attack(n = 1, skill = 3, reroll = 1)
 to_attack(n = 1, skill = 3, explode = 6)
 
 # with expanding attacks
-to_attack(n = 1, skill = 3, expand = list(lvl = 6, rate = 3)
+to_attack(n = 1, skill = 3, expand = list(lvl = 6, rate = 3))
 }

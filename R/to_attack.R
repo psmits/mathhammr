@@ -8,13 +8,13 @@
 #' @param reroll integer scalar what MAXIMUM result rerolls (default NULL).
 #' @param explode integer scalar what MINIMUM result explodes (default NULL).
 #' @param expand named list of arguments for \code{\link{expand_dice}} (default NULL).
-#' 
+#'
 #' @return integer scalar number of successful hits.
 #' @export
-#' 
+#'
 #' @examples
 #' # a single SM tactical attacks.
-#' to_attack(n = 1, skill = 3+)
+#' to_attack(n = 1, skill = 3)
 #'
 #' # a single SM tactical attacks while within 6" of a Captain.
 #' to_attack(n = 1, skill = 3, reroll = 1)
@@ -23,7 +23,7 @@
 #' to_attack(n = 1, skill = 3, explode = 6)
 #'
 #' # with expanding attacks
-#' to_attack(n = 1, skill = 3, expand = list(lvl = 6, rate = 3)
+#' to_attack(n = 1, skill = 3, expand = list(lvl = 6, rate = 3))
 to_attack <- function(n, skill, reroll = NULL, explode = NULL, expand = NULL) {
   # defense
   if(!is.numeric(n)) {
@@ -79,9 +79,11 @@ to_attack <- function(n, skill, reroll = NULL, explode = NULL, expand = NULL) {
     if(is.null(expand)) {
       stop('Error: expand expects a named list.')
     }
-
-    if(names(expand) %in% c('lvl', 'rate')) {
-      stop('Error: expand expects two named elements: lvl and rate.')
+    if(!all(names(expand) %in% c('lvl', 'rate'))) {
+      stop('Error: expand expects a named list.')
+    }
+    if(length(expand) != 2) {
+      stop('Error: expand expects list of length 2.')
     }
 
     if(!is.numeric(expand$lvl)) {

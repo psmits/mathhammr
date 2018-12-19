@@ -17,6 +17,10 @@ integer scalar number of failed FNPs
 \description{
 After a failed save, some rules allow an additional save-after-the-save to prevent wounds individually.
 This is sometimes refered as a shrug.
-This function stands in place of e.g. Disgustingly Resilient. 
+This function stands in place of e.g. Disgustingly Resilient.
 8th does not have universal rules, but this function uses the older name for convenience.
+}
+\examples{
+# CSM plague marine attempts to shrug a wound.
+to_fnp(1, 5)
 }

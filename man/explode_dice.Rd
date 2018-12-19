@@ -7,7 +7,7 @@
 explode_dice(x, lvl = 6)
 }
 \arguments{
-\item{x}{numeric vector length >= 1.}
+\item{x}{numeric vector length >= 1 of dice rolls.}
 
 \item{lvl}{numeric scalar what MINIMUM result explodes; default 6+.}
 }
@@ -22,5 +22,5 @@ This adds a new roll to the results for each explosion.
 \examples{
 x <- roll_dice(6)
 # death to the false emperor
-explode_die(x = x, lvl = 6)
+explode_dice(x = x, lvl = 6)
 }

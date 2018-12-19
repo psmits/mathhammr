@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' roll_die(1)
+#' roll_dice(1)
 roll_dice <- function(n) {
   # defense
   if(!is.numeric(n)) {
@@ -36,7 +36,7 @@ roll_dice <- function(n) {
 #' @examples
 #' x <- roll_dice(6)
 #' # death to the false emperor
-#' explode_die(x = x, lvl = 6)
+#' explode_dice(x = x, lvl = 6)
 explode_dice <- function(x, lvl = 6) {
   # defense
   if(!is.numeric(x)) {

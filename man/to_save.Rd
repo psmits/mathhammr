@@ -21,3 +21,7 @@ integer scalar number of failed saves
 \description{
 After a successful wound, the defender gets an opportunity to save and prevent that wound.
 }
+\examples{
+# SM tactical marine saves against a boltgun hit.
+to_save(n = 1, sv = 3, ap = 0)
+}

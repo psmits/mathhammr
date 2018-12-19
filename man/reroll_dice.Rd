@@ -21,5 +21,6 @@ This function replaces a previous roll with a new value.
 \examples{
 x <- roll_dice(6)
 # captain aura on to-hit
-reroll_dice(x = x, lvl = 1)
+rr <- roll_dice(6)
+reroll_dice(x = rr, lvl = 1)
 }

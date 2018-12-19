@@ -16,5 +16,5 @@ numeric vector of length >= 1.
 Core function to roll a d6.
 }
 \examples{
-roll_die(1)
+roll_dice(1)
 }
