@@ -18,8 +18,8 @@ to_save <- function(n, sv, ap = 0, invul = FALSE) {
   if(!is.numeric(n)) {
     stop('Error: n must be numeric.')
   }
-  if(n < 1) {
-    stop('Error: must roll at least one die. n must be >= 1.')
+  if(n < 0) {
+    stop('Error: must roll at positive number. n must be >= 0.')
   }
 
   if(!is.numeric(sv)) {
@@ -29,7 +29,7 @@ to_save <- function(n, sv, ap = 0, invul = FALSE) {
     stop('Error: Cannot have a save greater than 2+. sv < 2.')
   }
   if(sv > 6) {
-    warning('save value > 6 gives valid results, but will not prevent wounds.')
+    message('save value > 6 gives valid results, but will not prevent wounds.')
   }
 
   if(!is.numeric(ap)) {
@@ -44,7 +44,7 @@ to_save <- function(n, sv, ap = 0, invul = FALSE) {
       stop('Error: Cannot have a invul greater than 2+. sv < 2.')
     }
     if(sv > 6) {
-      warning('Error: invul value > 6 gives valid results, but will not prevent wounds.')
+      message('invul value > 6 gives valid results, but will not prevent wounds.')
     }
   }
 
@@ -85,8 +85,8 @@ to_fnp <- function(n, fnp) {
   if(!is.numeric(n)) {
     stop('Error: n must be numeric.')
   }
-  if(n < 1) {
-    stop('Error: Must roll at least one die. n must be >= 1.')
+  if(n < 0) {
+    stop('Error: Must roll a positive number of dice. n must be > 0')
   }
 
   if(!is.numeric(fnp)) {

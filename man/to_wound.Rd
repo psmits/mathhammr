@@ -4,7 +4,8 @@
 \alias{to_wound}
 \title{How many hits wound the target?}
 \usage{
-to_wound(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL)
+to_wound(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL,
+  trigger = NULL)
 }
 \arguments{
 \item{n}{integer scalar number of hits.}
@@ -18,6 +19,8 @@ to_wound(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL)
 \item{explode}{integer scalar what MINIMUM result explodes (default NULL).}
 
 \item{expand}{named list of arguments for \code{\link{expand_dice}} (default NULL).}
+
+\item{trigger}{integer vector length >= 1 which values trigger special effects (default NULL).}
 }
 \value{
 integer scalar number of wounding hits.

@@ -38,18 +38,18 @@ to_attack <- function(n,
   if(!is.numeric(n)) {
     stop('Error: n must be numeric.')
   }
-  if(n < 1) {
-    stop('Error: must roll at least 1 die. n < 1.')
+  if(n < 0) {
+    stop('Error: Must roll a positive number of dice. n must be > 0.')
   }
 
   if(!is.numeric(skill)) {
     stop('Error: skill must be numeric.')
   }
   if(skill < 1) {
-    stop('Error: must have min skill 1. skill < 1.')
+    stop('Error: must have min skill 1. skill must be >= 1.')
   }
   if(skill > 6) {
-    stop('Error: must have max skill 6. skill > 6.')
+    stop('Error: must have max skill 6. skill must be <= 6.')
   }
 
   if(!is.null(reroll)) {

@@ -1,5 +1,5 @@
 ---
-title: "Introduction to mathhammr"
+title: "Getting Started with mathhammr"
 author: "Peter D Smits"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -14,6 +14,85 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+```
+
+```{r cache = TRUE}
+#if (!require(devtools)) {
+#    install.packages('devtools')
+#}
+#devtools::install_github('psmits/mathhammr')
+```
+
+```{r message = FALSE}
+library(dplyr)
+library(magrittr)
+library(purrr)
+library(tidyr)
+library(ggplot2)
+library(mathammr)
+```
+
+```{r}
+# 5 man squad of space marines shot a 5 man squad of chaos space marines with bolters at > 12" away.
+hits <- to_attack(n= 5, skill = 3)
+print(hits)
+
+wounds <- to_wound(n = hits, str = 4, tgh = 4)
+print(wounds)
+
+damage <- to_save(n = wounds, sv = 3, ap = 0)
+print(damage)
+
+```
+
+Let's try that 1000 times.
+```{r}
+hits_many <- replicate(1000, to_attack(n = 5, skill = 3))
+wounds_many <- map_dbl(hits_many, ~ to_wound(n = .x, str = 4, tgh = 4))
+damage_many <- map_dbl(wounds_many, ~ to_save(n = .x, sv = 3, ap = 0))
+
+results <- tibble(hits = hits_many,
+                  wounds = wounds_many,
+                  damage = damage_many) # damage on a bolter
+results %>%
+  gather(key = 'key', value = 'value') %>%
+  mutate(key = case_when(key == 'hits' ~ 'Successful hit rolls',
+                         key == 'wounds' ~ 'Successful wound rolls',
+                         key == 'damage' ~ 'Unsaved wound rolls')) %>%
+  ggplot() +
+  geom_bar(aes(x = value, fill = key)) +
+  facet_wrap(key ~ .) +
+  labs(x = 'Result', y = 'Count') +
+  theme(legend.position = 'none') +
+  NULL
+```
+
+
+How about something more complicated. 30 Shoota boyz at a Rhino. Remembering Dakka, Dakka, Dakka.
+```{r}
+hits_boyz <- replicate(1000, to_attack(n = 2 * 30, skill = 5, explode = 6))
+wounds_boyz <- map_dbl(hits_boyz, ~ to_wound(n = .x, str = 4, tgh = 7))
+damage_boyz <- map_dbl(wounds_boyz, ~ to_save(n = .x, sv = 3, ap = 0))
+
+results <- tibble(hits = hits_boyz,
+                  wounds = wounds_boyz,
+                  damage = damage_boyz* 1) # damage on a bolter
+results %>%
+  gather(key = 'key', value = 'value') %>%
+  mutate(key = case_when(key == 'hits' ~ 'Successful hit rolls',
+                         key == 'wounds' ~ 'Successful wound rolls',
+                         key == 'damage' ~ 'Unsaved wound rolls')) %>%
+  ggplot() +
+  geom_bar(aes(x = value, fill = key)) +
+  geom_vline(xintercept = 10, colour = 'black') +
+  facet_wrap(key ~ .) +
+  labs(x = 'Result', y = 'Count') +
+  theme(legend.position = 'none') +
+  NULL
+
+# and percent of simulations where boyz kill the rhino?
+kill_percent <- (sum(damage_boyz >= 10) / length(damage_boyz)) * 100
+print(kill_percent)
 ```
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:

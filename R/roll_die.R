@@ -42,8 +42,8 @@ explode_dice <- function(x, lvl = 6) {
   if(!is.numeric(x)) {
     stop('Error: n must be numeric')
   }
-  if(any(x < 1)) {
-    stop('Error: must have at least one die roll (x has value below 1)')
+  if(any(x < 0)) {
+    stop('Error: must be positive. x < 0')
   }
 
   if(!is.numeric(lvl)) {
@@ -87,8 +87,8 @@ reroll_dice <- function(x, lvl = 1) {
   if(!is.numeric(x)) {
     stop('Error: n must be numeric')
   }
-  if(any(x < 1)) {
-    stop('Error: must have at least one die roll (x has value below 1)')
+  if(any(x < 0)) {
+    stop('Error: must roll a positive number of dice. no values of x < 0')
   }
 
   if(!is.numeric(lvl)) {
@@ -136,8 +136,8 @@ expand_dice <- function(x, lvl = 6, rate = 1) {
   if(!is.numeric(x)) {
     stop('Error: n must be numeric')
   }
-  if(any(x < 1)) {
-    stop('Error: must have at least one die roll (x has value below 1)')
+  if(any(x < 0)) {
+    stop('Error: Must roll a positive number of dice. x cannot have values less than 0')
   }
 
   if(!is.numeric(lvl)) {
@@ -190,8 +190,8 @@ trigger_dice <- function(x, trigger) {
   if(!is.numeric(x)) {
     stop('Error: n must be numeric')
   }
-  if(any(x < 1)) {
-    stop('Error: Must have at least one die roll (x has value below 1)')
+  if(any(x < 0)) {
+    stop('Error: Must roll a positive number of dice. x cannot have values less than 0')
   }
 
   if(!is.numeric(trigger)) {

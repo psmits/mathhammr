@@ -30,8 +30,8 @@ to_wound <- function(n,
   if(!is.numeric(n)) {
     stop('Error: n must be numeric.')
   }
-  if(n < 1) {
-    stop('Error: Must roll at least 1 die. n < 1.')
+  if(n < 0) {
+    stop('Error: Must roll a positive number of dice. n must be > 0.')
   }
 
   if(!is.numeric(str)) {
