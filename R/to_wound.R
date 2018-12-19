@@ -8,8 +8,10 @@
 #' @param reroll integer scalar what MAXIMUM result rerolls (default NULL).
 #' @param explode integer scalar what MINIMUM result explodes (default NULL).
 #' @param expand named list of arguments for \code{\link{expand_dice}} (default NULL).
-#' @export
+#'
 #' @return integer scalar number of wounding hits.
+#' @export
+#'
 #' @examples
 #' # hit a SM tactical with a boltgun -- how many wounds?
 #' to_wound(n = 1, str = 4, tgh = 4)

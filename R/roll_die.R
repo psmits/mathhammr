@@ -3,8 +3,10 @@
 #' Core function to roll a d6.
 #'
 #' @param n int scalar number of dice to roll.
+#'
 #' @return numeric vector of length >= 1.
 #' @export
+#'
 #' @examples
 #' roll_die(1)
 roll_dice <- function(n) {
@@ -30,8 +32,10 @@ roll_dice <- function(n) {
 #'
 #' @param x numeric vector length >= 1 of dice rolls.
 #' @param lvl numeric scalar what MINIMUM result explodes; default 6+.
+#'
 #' @return numeric vector of new rolls.
 #' @export
+#'
 #' @examples
 #' x <- roll_dice(6)
 #' # death to the false emperor
@@ -72,8 +76,10 @@ explode_dice <- function(x, lvl = 6) {
 #'
 #' @param x numeric vector length >= 1.
 #' @param lvl numeric scalar what MAXIMUM result rerolls; default re-roll 1s.
+#'
 #' @return numeric vector of length == x.
 #' @export
+#'
 #' @examples
 #' x <- roll_dice(6)
 #' # captain aura on to-hit
@@ -120,7 +126,10 @@ reroll_dice <- function(x, lvl = 1) {
 #' @param x numeric vector length >= 1.
 #' @param lvl numeric scalar what MINIMUM result expands; default 6+.
 #' @param rate numeric scalar number of actual successes on proc (default 1)?
+#'
 #' @return integer scalar number additional successes (see description).
+#' @export
+#'
 #' @examples
 #' x <- roll_dice(6)
 #' expand_dice(x = x, lvl = 6, rate = 3)

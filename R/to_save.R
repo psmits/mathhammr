@@ -6,7 +6,13 @@
 #' @param sv integer scalar minimum save value (e.g. SM marine has SV 3+).
 #' @param ap integer scalar armor piercing value of wound; negative and positive values accepted e.g. AP -3 and AP 3 are equivalent (default 0).
 #' @param invul logical scalar is the save an invulnerability save? default FALSE.
+#'
 #' @return integer scalar number of failed saves
+#' @export
+#'
+#' @examples
+#' # SM tactical marine saves against a boltgun hit.
+#' to_save(n = 1, sv = 3, ap = 0)
 to_save <- function(n, sv, ap = 0, invul = FALSE) {
   # defense
   if(!is.numeric(n)) {
@@ -67,7 +73,13 @@ to_save <- function(n, sv, ap = 0, invul = FALSE) {
 #'
 #' @param n integer scalar number of un-saved wounds
 #' @param fnp integer scalar minimum to ignore wound (e.g. fnp = 5 for 5+ Disgustingly Resilient)
+#'
 #' @return integer scalar number of failed FNPs
+#' @export
+#'
+#' @examples
+#' # CSM plague marine attempts to shrug a wound.
+#' to_fnp(1, 5)
 to_fnp <- function(n, fnp) {
   # defense
   if(!is.numeric(n)) {

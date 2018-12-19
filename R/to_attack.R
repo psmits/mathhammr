@@ -8,8 +8,10 @@
 #' @param reroll integer scalar what MAXIMUM result rerolls (default NULL).
 #' @param explode integer scalar what MINIMUM result explodes (default NULL).
 #' @param expand named list of arguments for \code{\link{expand_dice}} (default NULL).
-#' @export
+#' 
 #' @return integer scalar number of successful hits.
+#' @export
+#' 
 #' @examples
 #' # a single SM tactical attacks.
 #' to_attack(n = 1, skill = 3+)
