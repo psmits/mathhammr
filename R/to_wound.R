@@ -10,7 +10,7 @@
 #' @param expand named list of arguments for \code{\link{expand_dice}} (default NULL).
 #' @param trigger integer vector length >= 1 which values trigger special effects (default NULL).
 #'
-#' @return integer scalar number of wounding hits.
+#' @return integer scalar number of successful hits UNLESS !is.null(trigger) then named list with number of successes (success) and triggers (trigger).
 #' @export
 #'
 #' @examples
@@ -142,12 +142,6 @@ to_wound <- function(n,
     rr <- c(rr, nr)
   }
 
-  # given all those results, how many triggers?
-  if(!is.null(trigger)) {
-    nt <- trigger_dice(x = rr, trigger = trigger)
-    message('There were ', nt, ' wound triggers.')
-  }
-
   # 8th uses a simple formula to determine successful wounds
   if(str == tgh) {                     # str equal to toughness
     success <- sum(rr >= 4)
@@ -167,7 +161,17 @@ to_wound <- function(n,
     more_success <- do.call(expand_dice, expand)
     success <- success + more_success
   }
+  
+  # given all those results, how many triggers?
+  if(!is.null(trigger)) {
+    nt <- trigger_dice(x = rr, trigger = trigger)
+    out <- list()
+    out$success <- success
+    out$trigger <- nt
+  } else if(is.null(trigger)) {
+    out <- success
+  }
 
   # final count
-  success
+  out
 }

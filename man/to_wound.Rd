@@ -23,7 +23,7 @@ to_wound(n, str, tgh, reroll = NULL, explode = NULL, expand = NULL,
 \item{trigger}{integer vector length >= 1 which values trigger special effects (default NULL).}
 }
 \value{
-integer scalar number of wounding hits.
+integer scalar number of successful hits UNLESS !is.null(trigger) then named list with number of successes (success) and triggers (trigger).
 }
 \description{
 After a successful hit, the attacked determines how many wounds are dealt.

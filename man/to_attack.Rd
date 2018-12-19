@@ -21,7 +21,7 @@ to_attack(n, skill, reroll = NULL, explode = NULL, expand = NULL,
 \item{trigger}{integer vector length >= 1 which values trigger special effects (default NULL).}
 }
 \value{
-integer scalar number of successful hits.
+integer scalar number of successful hits UNLESS !is.null(trigger) then named list with number of successes (success) and triggers (trigger).
 }
 \description{
 When a unit attacks another unit, dice are rolled against the ballistic or weapon skill of the attacker.
