@@ -8,6 +8,14 @@
 #' @examples
 #' roll_die(1)
 roll_dice <- function(n) {
+  # defense
+  if(!is.numeric(n)) {
+    stop('n must be numeric')
+  }
+  if(n < 1) {
+    stop('must roll at least one die. n must be >= 1.')
+  }
+
   sample(x = 1:6,
          size = n,
          replace = TRUE)
@@ -20,7 +28,7 @@ roll_dice <- function(n) {
 #' Some dice space new rolls on a 6+ (or even 5+).
 #' This adds a new roll to the results for each explosion.
 #'
-#' @param x numeric vector length >= 1.
+#' @param x numeric vector length >= 1 of dice rolls.
 #' @param lvl numeric scalar what MINIMUM result explodes; default 6+.
 #' @return numeric vector of new rolls.
 #' @export
@@ -29,6 +37,24 @@ roll_dice <- function(n) {
 #' # death to the false emperor
 #' explode_die(x = x, lvl = 6)
 explode_dice <- function(x, lvl = 6) {
+  # defense
+  if(!is.numeric(x)) {
+    stop('n must be numeric')
+  }
+  if(any(x < 1)) {
+    stop('must have at least one die roll (x has value below 1)')
+  }
+
+  if(!is.numeric(lvl)) {
+    stop('lvl must be numeric')
+  }
+  if(lvl > 6) {
+    stop('lvl must be equal to or less than 6')
+  }
+  if(lvl < 1) {
+    stop('lvl must be greater than or equal to 1')
+  }
+
   # how many exploded
   ex <- sum(x >= lvl)
 
@@ -53,6 +79,24 @@ explode_dice <- function(x, lvl = 6) {
 #' # captain aura on to-hit
 #' reroll_dice(x = x, lvl = 1)
 reroll_dice <- function(x, lvl = 1) {
+  # defense
+  if(!is.numeric(x)) {
+    stop('n must be numeric')
+  }
+  if(any(x < 1)) {
+    stop('must have at least one die roll (x has value below 1)')
+  }
+
+  if(!is.numeric(lvl)) {
+    stop('lvl must be numeric')
+  }
+  if(lvl > 6) {
+    stop('lvl must be equal to or less than 6')
+  }
+  if(lvl < 1) {
+    stop('lvl must be greater than or equal to 1')
+  }
+
   # which get re-rolled
   rr <- x <= lvl
 
@@ -81,6 +125,31 @@ reroll_dice <- function(x, lvl = 1) {
 #' x <- roll_dice(6)
 #' expand_dice(x = x, lvl = 6, rate = 3)
 expand_dice <- function(x, lvl = 6, rate = 1) {
+  # defense
+  if(!is.numeric(x)) {
+    stop('n must be numeric')
+  }
+  if(any(x < 1)) {
+    stop('must have at least one die roll (x has value below 1)')
+  }
+
+  if(!is.numeric(lvl)) {
+    stop('lvl must be numeric')
+  }
+  if(lvl > 6) {
+    stop('lvl must be equal to or less than 6')
+  }
+  if(lvl < 1) {
+    stop('lvl must be greater than or equal to 1')
+  }
+
+  if(!is.numeric(rate)) {
+    stop('rate must be greater than or equal to 1')
+  }
+  if(rate < 1) {
+    stop('rate must be greater than or equal to 1')
+  }
+
   # how many proc?
   n <- sum(x >= lvl)
 
