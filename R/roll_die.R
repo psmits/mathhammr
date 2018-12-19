@@ -14,9 +14,6 @@ roll_dice <- function(n) {
   if(!is.numeric(n)) {
     stop('Error: n must be numeric')
   }
-  if(n < 1) {
-    stop('Error: must roll at least one die. n must be >= 1.')
-  }
 
   sample(x = 1:6,
          size = n,
@@ -83,7 +80,8 @@ explode_dice <- function(x, lvl = 6) {
 #' @examples
 #' x <- roll_dice(6)
 #' # captain aura on to-hit
-#' reroll_dice(x = x, lvl = 1)
+#' rr <- roll_dice(6)
+#' reroll_dice(x = rr, lvl = 1)
 reroll_dice <- function(x, lvl = 1) {
   # defense
   if(!is.numeric(x)) {
