@@ -16,6 +16,7 @@ Suggests:
     purrr,
     dplyr,
     magrittr,
-    tidyr
+    tidyr,
+    shiny
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
