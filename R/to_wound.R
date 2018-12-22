@@ -127,7 +127,9 @@ to_wound <- function(n,
 
   # dice can only be re-rolled once, so order of operations matter
   if(!is.null(reroll)) {
-    rr <- reroll_dice(x = rr, lvl = reroll)
+    # only re-roll fails!
+    tr <- !(rr >= skill)
+    rr[tr] <- reroll_dice(x = rr[tr], lvl = reroll)
   }
 
   # exploding results
@@ -135,7 +137,9 @@ to_wound <- function(n,
     nr <- explode_dice(x = rr, lvl = explode)
 
     if(!is.null(reroll)) {
-      nr <- reroll_dice(x = nr, lvl = reroll)
+      # only re-roll fails!
+      tr <- !(nr >= skill)
+      nr[tr] <- reroll_dice(x = nr[tr], lvl = reroll)
     }
 
     # include the new dice
