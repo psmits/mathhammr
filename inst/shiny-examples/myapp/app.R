@@ -5,6 +5,8 @@ ui <- fluidPage(
 
   sidebarLayout(
     sidebarPanel(
+      submitButton("Submit"),
+
       h2("Attacker's Stats"),
       numericInput("atk",
                    h3("Number of Attacks"),
