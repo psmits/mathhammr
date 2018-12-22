@@ -1,4 +1,10 @@
 library(shiny)
+library(dplyr)
+library(magrittr)
+library(purrr)
+library(ggplot2)
+library(mathhammr)
+
 
 ui <- fluidPage(
   titlePanel("Mathhammr dice roller"),
@@ -72,10 +78,19 @@ ui <- fluidPage(
     mainPanel(
       h2(textOutput("attacker_var")),
       br(),
-      h2(textOutput("defender_var"))
+      h2(textOutput("defender_var")),
+      tabsetPanel(type = "tabs",
+                  tabPanel("Plot", 
+                           h3("nope")),
+                  tabPanel("Summary", 
+                           h3("nope")),
+                  tabPanel("Table", 
+                           h3("nope"))
+      )
     )
   )
 )
+
 
 server <- function(input, output) {
 
@@ -110,4 +125,5 @@ server <- function(input, output) {
 
 }
 
-shinyApp(ui = ui, server = server)
+
+#shinyApp(ui = ui, server = server)
