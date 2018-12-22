@@ -81,10 +81,6 @@ ui <- fluidPage(
       h2(textOutput("defender_var")),
       tabsetPanel(type = "tabs",
                   tabPanel("Plot", 
-                           h3("nope")),
-                  tabPanel("Summary", 
-                           h3("nope")),
-                  tabPanel("Table", 
                            h3("nope"))
       )
     )
