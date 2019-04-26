@@ -125,6 +125,19 @@ to_wound <- function(n,
   # everything starts with a dice roll
   rr <- roll_dice(n)
 
+  # define "skill" as the target roll
+  if(str == tgh) {                     # str equal to toughness
+    skill <- 4
+  } else if(str > tgh & str < (2 * tgh)) { # str greater than toughness, but not twice
+    skill <- 3
+  } else if(str >= (2 * tgh)) {        # str twice or greater than toughness
+    skill <- 2
+  } else if(str < tgh & (2 * str) > tgh) { # str less than toughness, but not half
+    skill <- 5
+  } else if(str <= (2 * tgh)) {        # str half or less of toughness
+    skill <- 6
+  }
+
   # dice can only be re-rolled once, so order of operations matter
   if(!is.null(reroll)) {
     # only re-roll fails!
@@ -146,18 +159,9 @@ to_wound <- function(n,
     rr <- c(rr, nr)
   }
 
-  # 8th uses a simple formula to determine successful wounds
-  if(str == tgh) {                     # str equal to toughness
-    success <- sum(rr >= 4)
-  } else if(str > tgh & str < (2 * tgh)) { # str greater than toughness, but not twice
-    success <- sum(rr >= 3)
-  } else if(str >= (2 * tgh)) {        # str twice or greater than toughness
-    success <- sum(rr >= 2)
-  } else if(str < tgh & (2 * str) > tgh) { # str less than toughness, but not half
-    success <- sum(rr >= 5)
-  } else if(str <= (2 * tgh)) {        # str half or less of toughness
-    success <- sum(rr >= 6)
-  }
+  # calculate the number of wounds
+  success <- wound_logic(str, tgh, rr)
+
 
   # expanding results
   if(!is.null(expand)) {
@@ -178,4 +182,21 @@ to_wound <- function(n,
 
   # final count
   out
+}
+
+# bonus function
+wound_logic <- function(str, tgh, rr) {
+  # 8th uses a simple formula to determine successful wounds
+  if(str == tgh) {                     # str equal to toughness
+    success <- sum(rr >= 4)
+  } else if(str > tgh & str < (2 * tgh)) { # str greater than toughness, but not twice
+    success <- sum(rr >= 3)
+  } else if(str >= (2 * tgh)) {        # str twice or greater than toughness
+    success <- sum(rr >= 2)
+  } else if(str < tgh & (2 * str) > tgh) { # str less than toughness, but not half
+    success <- sum(rr >= 5)
+  } else if(str <= (2 * tgh)) {        # str half or less of toughness
+    success <- sum(rr >= 6)
+  }
+  success
 }
