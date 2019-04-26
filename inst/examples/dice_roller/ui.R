@@ -11,7 +11,7 @@ library(shiny)
 
 ui <- fluidPage(
 
-  titlePanel('Dice Roller'),
+  titlePanel('40k 8th edition Dice Roller'),
 
   sidebarLayout(
     sidebarPanel(
@@ -73,13 +73,13 @@ ui <- fluidPage(
       
       # save details 
       checkboxInput('save_invul', 
-                    h4('Is the Defense Save an Ivulnerable?'), 
+                    h4('Is the Defense Save an Invulnerable?'), 
                     value = FALSE),
-
+      
       # explosions are sometimes
       checkboxInput('atk_explode_state', 
                     h5('Do some attack rolls proc more attacks
-                       (e.g. Death to the False Emperror)?'), 
+                       (e.g. Death to the False Emperor)?'), 
                     value = FALSE),
       conditionalPanel(
         condition = 'input.atk_explode_state == true',
