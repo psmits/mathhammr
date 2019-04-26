@@ -8,8 +8,6 @@
 #
 
 library(shiny)
-library(glue)
-
 
 ui <- fluidPage(
 
@@ -17,38 +15,41 @@ ui <- fluidPage(
 
   sidebarLayout(
     sidebarPanel(
-      h1('Define the attack!'),
+      h1('Make an attack!'),
+
+      # make it go
+      actionButton('roll', 'Roll!'),
 
       # always  
       numericInput('n_atk',
-                   h4('Total number of attacks.'),
+                   h3('Total number of attacks.'),
                    value = 1),
 
       sliderInput('skill',
-                  h4('Relevant skill value (WS or BS).'),
+                  h3('Relevant skill value (WS or BS).'),
                   min = 2, max = 6,
                   value = 6),
 
       numericInput('atk_str',
-                  h4('Attack strength.'),
+                  h3('Attack strength.'),
                   value = 3),
       
       numericInput('def_tgh',
-                  h4('Defender toughness.'),
+                  h3('Defender toughness.'),
+                  value = 3),
+      
+      numericInput('def_save',
+                  h3('Defender save.'),
                   value = 3),
       
       numericInput('atk_ap',
-                  h4('Attack AP.'),
+                  h3('Attack AP.'),
                   value = 0),
-      
-      numericInput('def_save',
-                  h4('Defender save.'),
-                  value = 3),
 
       # sometimes
       # rerolls are sometimes
       checkboxInput('atk_reroll_state', 
-                    h5('Any rerolls on attacks?'), 
+                    h4('Any rerolls on attacks?'), 
                     value = FALSE),
       conditionalPanel(
         condition = 'input.atk_reroll_state == true',
@@ -60,7 +61,7 @@ ui <- fluidPage(
       
       # rerolls are sometimes
       checkboxInput('wnd_reroll_state', 
-                    h5('Any rerolls on wounds?'), 
+                    h4('Any rerolls on wounds?'), 
                     value = FALSE),
       conditionalPanel(
         condition = 'input.wnd_reroll_state == true',
@@ -69,11 +70,16 @@ ui <- fluidPage(
                     min = 1, max = 6,
                     value = 1)
       ),
+      
+      # save details 
+      checkboxInput('save_invul', 
+                    h4('Is the Defense Save an Ivulnerable?'), 
+                    value = FALSE),
 
       # explosions are sometimes
       checkboxInput('atk_explode_state', 
-                    h5(glue('Do some attack rolls proc more attacks
-                            (e.g. Death to the False Emperror)?')), 
+                    h5('Do some attack rolls proc more attacks
+                       (e.g. Death to the False Emperror)?'), 
                     value = FALSE),
       conditionalPanel(
         condition = 'input.atk_explode_state == true',
@@ -156,15 +162,19 @@ ui <- fluidPage(
                     value = 6)
       ),
 
-      # save detals
-      checkboxInput('save_invul_state', 
-                    h5('Is the Defense Save an Ivulnerable?'), 
-                    value = FALSE)
+      # make it go
+      actionButton('roll', 'Roll!')
+
 
     ),
     
+    # tabset comparing these results to 
+    # distrubition of 1000 other rolls
+    # Results | Comparison
+    # probably overboard -- maybe just display facet_wrap under?
     mainPanel(h1('Results'),
-              h3(textOutput('results'))
+              h3(textOutput('results')),
+              plotOutput('quality')
     )
   )
 )
