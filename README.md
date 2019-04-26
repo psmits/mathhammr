@@ -30,3 +30,10 @@ This package is not on CRAN. To use it, you'll have to install from GitHub.
 library(devtools)
 devtools::install_github("psmits/mathhammr")
 ```
+
+
+
+Shiny Applications
+------------------
+
+[This package powers a webapp for rolling dice. It is great for horde armies.](https://psmits.shinyapps.io/dice_roller/)
