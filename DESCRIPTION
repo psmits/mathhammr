@@ -1,7 +1,7 @@
 Package: mathhammr
 Type: Package
 Title: Tools for Dice Roll Simulations in Warhammer40k 8th
-Version: 0.1.0
+Version: 0.2.0
 Author: Peter D Smits
 Maintainer: Peter D Smits <peterdavidsmits@gmail.com>
 Description: Functions to resolve attacks, wounds, saves for Warhammer 40k 8th.
