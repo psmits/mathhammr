@@ -58,7 +58,7 @@ to_save <- function(n, sv, ap = 0, invul = FALSE) {
 
   # roll saves
   rr <- roll_dice(n)
-  fails <- sum(rr >= sv)               # this technically works even if save 7+
+  fails <- sum(rr < sv)               # this technically works even if save 7+
 
   fails
 }
