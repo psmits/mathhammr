@@ -7,7 +7,7 @@
 #' @param ap integer scalar armor piercing value of wound; negative and positive values accepted e.g. AP -3 and AP 3 are equivalent (default 0).
 #' @param invul logical scalar is the save an invulnerability save? default FALSE.
 #'
-#' @return integer scalar number of failed saves
+#' @return integer scalar number of unsaved wounds
 #' @export
 #'
 #' @examples
